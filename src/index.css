@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply bg-gray-50 text-gray-900;
+}
+
+/* Modern Light Spotlight Background */
+.spotlight-bg {
+  background-color: #f8fafc; /* Slate-50 */
+  background-image: 
+    radial-gradient(at 50% 0%, rgba(200, 154, 75, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(225, 184, 107, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(241, 245, 249, 1) 0px, transparent 50%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* PRINT STYLES - CRITICAL FOR INVOICE */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  
+  /* Hide scrollbars in print */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Only show the printable area */
+  #invoice-print-area, #invoice-print-area * {
+    visibility: visible;
+  }
+
+  /* Position the print area at top left */
+  #invoice-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0 !important; /* Reset padding for print */
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    -webkit-print-color-adjust: exact !important; /* Force background colors */
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide modal backdrop/wrapper */
+  .fixed.inset-0 {
+    position: static;
+    background: white;
+    z-index: auto;
+  }
+  
+  /* Ensure page breaks behave nicely */
+  table {
+    page-break-inside: auto;
+  }
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+}
